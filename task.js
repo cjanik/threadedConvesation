@@ -1,36 +1,37 @@
 (function(window, document, $, undefined){
 
-	var discussion;
+	var topics = [];
 
 	$.getJSON('assets/discussion.json', function(data){
-		discussion = data.topics;
+		topics = data.topics;
 		parseConversation();
 	});
 
 	function parseConversation(){
-		$.each(discussion, function(index, value){
+		$.each(topics, function(index, topic){
 
-			var element = displayTopic(value);
+			var element = displayTopic(topic);
 			$('#first').append(element);
 		});
 	}
 
-	function displayTopic(value, element){
+	function displayTopic(topic, element){
 		var element = $('<div/>').attr('class', 'comment'),
 			quoteIcon = $('<i/>').attr('class', 'quote left icon avatar'),
 			divider = $('<div/>').attr('class', 'ui dividing header'),
-			topic = $('<div/>').attr('class', 'content'),
-			text = $('<div/>').attr('class', 'text').html(value.topictitle);
+			topicContent = $('<div/>').attr('class', 'content'),
+			text = $('<div/>').attr('class', 'text').html(topic.topictitle);
 
-		topic.append(text);
-		element.append(quoteIcon, topic, divider);
+		topicContent.append(text);
+		element.append(quoteIcon, topicContent, divider);
 
-		if(value.responses.length > 0){
+		if(topic.responses.length > 0){
 
 			var comments = $('<div/>').attr('class', 'comments');
 
-			$.each(value.responses, function(index, value){
-				comments = displayResponse(value, comments);
+			$.each(topic.responses, function(index, response){
+				console.log('Comment: ', response);
+				comments = displayResponse(response, comments);
 			});
 
 			// need to check comment depth and parent id here to append comments to correct content !!!!
@@ -42,7 +43,7 @@
 	}
 
 	function displayResponse(value, element){
-		var response = $('<div/>').attr('class', 'comment').append($('<div/>').attr('class', 'content')),
+		var response = $('<div/>').attr('class', 'comment').attr('data-id', value.id).attr('data-parent-id', value.parentid).append($('<div/>').attr('class', 'content')),
 			author = $('<div/>').attr('class', 'author').html(value.author),
 			text = $('<div/>').attr('class', 'text').html(value.posttext),
 			date = new Date(1970,0,1);
