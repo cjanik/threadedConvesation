@@ -17,11 +17,13 @@
 
 	function displayTopic(value, element){
 		var element = $('<div/>').attr('class', 'comment'),
+			quoteIcon = $('<i/>').attr('class', 'quote left icon avatar'),
+			divider = $('<div/>').attr('class', 'ui dividing header'),
 			topic = $('<div/>').attr('class', 'content'),
 			text = $('<div/>').attr('class', 'text').html(value.topictitle);
 
 		topic.append(text);
-		element.append(topic);
+		element.append(quoteIcon, topic, divider);
 
 		if(value.responses.length > 0){
 
