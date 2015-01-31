@@ -20529,8 +20529,8 @@ a.ui.card:hover,
 .ui.comments .comment {
   position: relative;
   background: none;
-  margin: 0.5em 0em 0em;
-  padding: 0.5em 0em 0em;
+  /* margin: 0.5em 0em 0em; */
+  /* padding: 0.5em 0em 0em; */
   border: none;
   border-top: none;
   line-height: 1.2;
@@ -20539,6 +20539,7 @@ a.ui.card:hover,
 .ui.comments .comment:first-child {
   margin-top: 0em;
   padding-top: 0em;
+
 }
 
 /*--------------------
@@ -20547,8 +20548,9 @@ a.ui.card:hover,
 
 .ui.comments .comment .comments {
   margin: 0em 0em 0.5em 0.5em;
-  padding: 1em 0em 1em 1em;
+  padding: 1em 0em .5em 1.5em;
 }
+
 
 .ui.comments .comment .comments:before {
   position: absolute;
@@ -20559,7 +20561,9 @@ a.ui.card:hover,
 .ui.comments .comment .comments .comment {
   border: none;
   border-top: none;
+  border-left: thin dashed;
   background: none;
+  padding-left: .5em;
 }
 
 /*--------------
@@ -20572,6 +20576,11 @@ a.ui.card:hover,
   height: auto;
   float: left;
   margin: 0.2em 0em 0em;
+
+}
+
+.teal.comment.outline.icon.avatar {
+  border-left: none !important;
 }
 
 .ui.comments .comment img.avatar,
